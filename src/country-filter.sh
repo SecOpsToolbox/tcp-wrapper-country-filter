@@ -32,6 +32,7 @@ ACTION=$DENY_ACTION
 # ---------------------------------------------------------------------------------------- #
 # A simple wrapper to check if the script is being run via the multiplex or not.           #
 # ---------------------------------------------------------------------------------------- #
+
 function in_multiplexer
 {
     [[ "${MUX}" = true ]] && return 0 || return 1;
@@ -42,6 +43,7 @@ function in_multiplexer
 # ---------------------------------------------------------------------------------------- #
 # A wrapper to check if the script is being run in a terminal or not.                      #
 # ---------------------------------------------------------------------------------------- #
+
 function in_terminal
 {
     [[ -t 1 ]] && return 0 || return 1;
@@ -52,6 +54,7 @@ function in_terminal
 # ---------------------------------------------------------------------------------------- #
 # Show output only if we are running in a terminal, but always log the message.            #
 # ---------------------------------------------------------------------------------------- #
+
 function debug()
 {
     local message="${1:-}"
@@ -69,10 +72,11 @@ function debug()
 # ---------------------------------------------------------------------------------------- #
 # Check individual results against a given array and deny where applicable.                #
 # ---------------------------------------------------------------------------------------- #
+
 function check_results()
 {
-    local item=$1
-    local list=$2
+    local item="${1:-}"
+    local list="${2:-}"
 
     #
     # Check the current item and list and decide what action to take
@@ -99,6 +103,7 @@ function check_results()
 # Lookup the country for a given IP, it should only have, at most, one entry, capture the  #
 # country code and test each it to ensure it is not bocked.                                #
 # ---------------------------------------------------------------------------------------- #
+
 function handle_country_blocks
 {
     #
@@ -142,6 +147,7 @@ function handle_country_blocks
 # ---------------------------------------------------------------------------------------- #
 # The main function where all of the heavy lifting and script config is done.              #
 # ---------------------------------------------------------------------------------------- #
+
 function main()
 {
     #
@@ -185,6 +191,7 @@ function main()
 # ---------------------------------------------------------------------------------------- #
 # The actual 'script' and the functions/sub routines are called in order.                  #
 # ---------------------------------------------------------------------------------------- #
+
 main "${@}"
 
 # ---------------------------------------------------------------------------------------- #
