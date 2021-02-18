@@ -1,6 +1,15 @@
 matrix:
   include:
   - language: ruby
+    name: Github Linguist (rvm 2.7)
+    rvm: 2.7
+    before_install:
+    - git clone https://github.com/TravisToolbox/github-linguist
+    install:
+    - "./github-linguist/install.sh"
+    script:
+    - "./github-linguist/scan.sh"
+  - language: ruby
     name: YAML Linting (rvm 2.7)
     rvm: 2.7
     before_install:
